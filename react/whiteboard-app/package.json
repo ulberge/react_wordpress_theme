@@ -1,0 +1,23 @@
+{
+  "name": "whiteboard-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "backbone": "^1.3.3",
+    "jquery": "^3.2.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.0.17"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "copy-build-to-temp": "copyfiles -f build/static/js/*.js build/static/css/*.css temp",
+    "build-rename": "npm run build-rename-js && npm run build-rename-css",
+    "build-rename-js": "renamer --regex --find 'main\\.[^\\.]+\\.js' --replace 'main.js' temp/*",
+    "build-rename-css": "renamer --regex --find 'main\\.[^\\.]+\\.css' --replace 'main.css' temp/*",
+    "move-temp-to-prod": "mv -f temp ../../dist/whiteboard-app",
+    "build": "react-scripts build && npm run copy-build-to-temp && npm run build-rename && npm run move-temp-to-prod"
+  }
+}
